@@ -1,0 +1,68 @@
+<div class="lists row">
+    <nb-card class="list-card">
+      <nb-card-header>All User Profiles</nb-card-header>
+
+      <table>
+        <colgroup>
+          <col span="1" style="width: 25%;">
+          <col span="1" style="width: 30%;">
+          <col span="1" style="width: 30%;">
+          <col span="1" style="width: 15%;">
+       </colgroup>
+      <tbody>
+        <th>Personal Information</th>
+        <th>Music Preference</th>
+        <th>Video Preference</th>
+        <th> </th>
+        <tr *ngFor="let user of users">
+          <td>
+            <nb-user [name]="user.name" [title]="user.age">
+            </nb-user>
+            <p>Grew up in: Washington, USA</p>
+            <p>Was a/an: Teacher</p>
+            <p>Uploaded: 5 photos/2 videos</p>
+            <div class="spacer"></div>
+          </td>
+          <td>
+            <button *ngFor="let genre of user.music_preference_like" nbButton outline status="success">{{ genre }}</button>
+            <div class="spacer"></div>
+            <button nbButton outline status="danger">Rowdy</button>
+          </td>
+          <td>
+            <button nbButton outline status="success">TV Show</button>
+            <div class="spacer"></div>
+            <button nbButton outline status="danger">Thriller</button>
+            <button nbButton outline status="danger">Drama</button>
+          </td>
+          <td>
+            <button nbButton hero fullWidth status="success" (click)="openWindowForm()">SHOW / ANNOTATE sessions</button>
+            <div class="spacer"></div>
+            <button nbButton hero fullWidth status="success" (click)="openWindowForm()">VIEW / EDIT PROFILE</button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <!-- <nb-list>
+        <nb-list-item *ngFor="let user of users">
+              <nb-user [name]="user.name" [title]="user.title">
+              </nb-user>
+        </nb-list-item>
+      </nb-list> -->
+    </nb-card>
+    <!-- <nb-card class="list-card">
+      <nb-card-header> Add a New Profile</nb-card-header>
+    </nb-card> -->
+    <nb-card class="list-card">
+      <!-- <a (click)="onClick()" href="#" nbButton shape="rectangle" status="control">
+        Link
+      </a> -->
+      <button [routerLink]="'/pages/profiles/profile-add'" nbButton fullWidth status="control">
+        <nb-icon icon="person-add-outline" status="info"></nb-icon>
+        Add a New Profile
+      </button>
+      <p class="button-paragraph">
+        You can add {{ profileNumberLimit - users.length }} more users (Subscription includes {{ profileNumberLimit }} users)
+      </p>
+    </nb-card>
+
+</div>

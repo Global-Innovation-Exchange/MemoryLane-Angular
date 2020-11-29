@@ -1,0 +1,22 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  ::ng-deep .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-group {
+    text-align: center;
+    button {
+      margin: 0 1rem;
+    }
+  }
+
+  .action-button {
+    text-align: right;
+    button {
+      margin-left: 0.5rem;
+    }
+  }
+}

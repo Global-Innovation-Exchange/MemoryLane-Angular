@@ -1,0 +1,171 @@
+<nb-card>
+  <nb-card-body>
+    <nb-stepper #stepper>
+      <nb-step [stepControl]="firstForm" label="Personal Information">
+        <h4 class="form-title">Fill in Personal information of your caretaker</h4>
+        <form [formGroup]="firstForm" (ngSubmit)="onFirstSubmit()" class="step-container">
+          <!-- <p class="lorem">
+                Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle,
+                my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up, gravida vizzle, dang.
+              </p> -->
+          <div class="row">
+            <label for="inputName" class="label col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-5">
+              <input type="text" nbInput fullWidth id="inputFirstName" formControlName="firstName" placeholder="First Name" [status]="firstNameValidated ? 'basic' : 'danger'">
+            </div>
+            <div class="col-sm-5">
+              <input type="text" nbInput fullWidth id="inputLastName" formControlName="lastName" placeholder="Last Name" [status]="lastNameValidated ? 'basic' : 'danger'">
+            </div>
+          </div>
+          <div class="row">
+            <!-- <div class="form-group"> -->
+              <label for="inputGender" class="label col-sm-2 col-form-label">Gender</label>
+              <div class="col-sm-5">
+                <nb-select fullWidth placeholder="Select a Gender" formControlName="gender" [status]="genderValidated ? 'basic' : 'danger'">
+                  <nb-option value="Male">Male</nb-option>
+                  <nb-option value="Female">Female</nb-option>
+                  <nb-option value="N/A">Prefer not to say</nb-option>>
+                </nb-select>
+              </div>
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <!-- <div class="form-group"> -->
+              <label for="inputBirthdate" class="label col-sm-2 col-form-label">Birth Date</label>
+              <div class="col-sm-5">
+                <input nbInput fullWidth placeholder="Select date of birth" [nbDatepicker]="formpicker" formControlName="birthDate" [status]="birthDateValidated ? 'basic' : 'danger'">
+                <nb-datepicker #formpicker></nb-datepicker>
+              </div>
+            <!-- </div> -->
+          </div>
+
+          <div class="row">
+                <label for="inputHome" class="label col-sm-2 col-form-label">Grew up in</label>
+                <div class="col-sm-5">
+                  <nb-select fullWidth placeholder="Select Country">
+                    <nb-option value="US">United States</nb-option>
+                    <nb-option value="CA">Canada</nb-option>
+                    <nb-option value="UK">United Kingdom</nb-option>
+                    <nb-option value="N/A">Prefer not to say</nb-option>>
+                  </nb-select>
+                </div>
+                <div class="col-sm-5">
+                  <nb-select fullWidth placeholder="Select State/Province">
+                    <nb-option value="WA">Washington</nb-option>
+                    <nb-option value="NY">New York</nb-option>
+                    <nb-option value="OR">New York</nb-option>
+                    <nb-option value="N/A">Prefer not to say</nb-option>>
+                  </nb-select>
+                </div>
+          </div>
+          <div class="row">
+            <label for="inputOccupation" class="label col-sm-2 col-form-label">Worked as</label>
+            <div class="col-sm-5">
+              <nb-select fullWidth placeholder="Select Occupation">
+                <nb-option value="teacher">Teacher</nb-option>
+                <nb-option value="nurse">Nurse</nb-option>
+                <nb-option value="engineer">Engineer</nb-option>
+                <nb-option value="designer">Designer</nb-option>
+                <nb-option value="musican">Musican</nb-option>
+                <nb-option value="other">Other</nb-option>
+                <nb-option value="">Prefer not to say</nb-option>>
+              </nb-select>
+            </div>
+          </div>
+          <div class="nav-buttons">
+            <button nbButton nbStepperNext (click)="createProfile()">next</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="secondForm" label="Favorite Contents">
+        <h4 class="form-title">Select the favorite music and videos genres/mood</h4>
+        <form [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()" class="step-container content-checkbox">
+          <!-- <p class="lorem">
+            Pellentesque we gonna chung tortor.
+            Sizzle pizzle. Fizzle izzle dolor dapibus fo shizzle mah nizzle fo rizzle, mah home g-dizzle tempus tempor.
+            Maurizzle cool nibh owned turpizzle. My shizz fo shizzle tortor.
+          </p> -->
+          <div class="row">
+            <div class='col'>
+              <label class="label">
+                <nb-icon icon="music-outline" status="info"></nb-icon>
+                Music Preference (up to {{ checkBoxMaxCount }})
+              </label>
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods">
+                <nb-checkbox
+                  status="basic"
+                  (checkedChange)="onCheckChange($event, mood, 'music')"
+                  [disabled]="musicLikeCount == checkBoxMaxCount && !mood.checked">
+                  {{ mood.name }}
+                </nb-checkbox>
+              </div>
+            </div>
+            <div class='col'>
+              <label class="label">
+                <nb-icon icon="video-outline" status="info"></nb-icon>
+                Video Preference (up to {{ checkBoxMaxCount }})
+              </label>
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types">
+                <nb-checkbox
+                  status="basic"
+                  (checkedChange)="onCheckChange($event, type, 'video')"
+                  [disabled]="videoLikeCount == checkBoxMaxCount && !type.checked">
+                  {{ type.name }}
+                </nb-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="nav-buttons">
+            <button nbButton nbStepperPrevious>prev</button>
+            <button nbButton nbStepperNext>next</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="thirdForm" label="Disliked Contents">
+        <h4 class="form-title">Select the genres of music and videos he/she really dislikes.</h4>
+        <form [formGroup]="thirdForm" (ngSubmit)="onThirdSubmit()" class="step-container content-checkbox">
+          <div class="row">
+            <div class='col'>
+              <label class="label">
+                <nb-icon icon="music-outline" status="info"></nb-icon>
+                Music Preference (up to {{ checkBoxMaxCount }})
+              </label>
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods">
+                <nb-checkbox
+                  status="basic"
+                  (checkedChange)="onCheckChange($event, mood, 'music')"
+                  [disabled]="musicLikeCount == checkBoxMaxCount && !mood.checked">
+                  {{ mood.name }}
+                </nb-checkbox>
+              </div>
+            </div>
+            <div class='col'>
+              <label class="label">
+                <nb-icon icon="video-outline" status="info"></nb-icon>
+                Video Preference (up to {{ checkBoxMaxCount }})
+              </label>
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types">
+                <nb-checkbox
+                  status="basic"
+                  (checkedChange)="onCheckChange($event, type, 'video')"
+                  [disabled]="videoLikeCount == checkBoxMaxCount && !type.checked">
+                  {{ type.name }}
+                </nb-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="nav-buttons">
+            <button nbButton nbStepperPrevious>prev</button>
+            <button nbButton nbStepperNext>Confirm</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="thirdForm" [hidden]="true" label="Third step">
+        <div class="step-container confirmation">
+          <h3>Profile Created!</h3>
+          <button nbButton (click)="stepper.reset()">Create another one</button>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>
