@@ -26,13 +26,12 @@
           <td>
             <button *ngFor="let genre of user.music_preference_like" nbButton outline status="success">{{ genre }}</button>
             <div class="spacer"></div>
-            <button nbButton outline status="danger">Rowdy</button>
+            <button *ngFor="let d_genre of user.music_preference_dislike" nbButton outline status="danger">{{ d_genre }}</button>
           </td>
           <td>
-            <button nbButton outline status="success">TV Show</button>
+            <button *ngFor="let type of user.video_preference_like" nbButton outline status="success">{{ type }}</button>
             <div class="spacer"></div>
-            <button nbButton outline status="danger">Thriller</button>
-            <button nbButton outline status="danger">Drama</button>
+            <button *ngFor="let d_type of user.video_preference_dislike" nbButton outline status="danger">{{ d_type }}</button>
           </td>
           <td>
             <button nbButton hero fullWidth status="success" (click)="openWindowForm(user.id)">SHOW / ANNOTATE sessions</button>

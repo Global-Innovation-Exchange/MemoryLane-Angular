@@ -27,6 +27,10 @@ export class ProfileListComponent implements OnInit {
     location: string,
     occupation: string,
     music_preference_like: [string],
+    music_preference_dislike: [string],
+    video_preference_like: [string],
+    video_preference_dislike: [string],
+
   }[] = [
     // { name: 'Carla Espinosa', age: '92 years old'},
     // { name: 'Bob Kelso', age: '85 years old'},
@@ -51,7 +55,9 @@ export class ProfileListComponent implements OnInit {
               location: p.location,
               occupation: p.occupation,
               music_preference_like: p.prefered_genre,
-              // music_preference_disklike: p.disliked_genre,
+              music_preference_dislike: p.disliked_genre,
+              video_preference_like: p.prefered_video,
+              video_preference_dislike: p.disliked_genre,
             });
           }
         },
