@@ -16,10 +16,10 @@
         <th> </th>
         <tr *ngFor="let user of users">
           <td>
-            <nb-user [name]="user.name" [title]="user.age">
+            <nb-user [name]="user.name" [title]="user.gender + ', '+ user.age">
             </nb-user>
-            <p>Grew up in: Washington, USA</p>
-            <p>Was a/an: Teacher</p>
+            <p>Grew up in: {{ user.location }}</p>
+            <p>Was a/an: {{ user.occupation }}</p>
             <p>Uploaded: 5 photos/2 videos</p>
             <div class="spacer"></div>
           </td>

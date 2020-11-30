@@ -24,6 +24,7 @@ export class ProfileListComponent implements OnInit {
     id: string,
     name: string,
     age: string,
+    gender: string,
     location: string,
     occupation: string,
     music_preference_like: [string],
@@ -51,6 +52,7 @@ export class ProfileListComponent implements OnInit {
             this.users.push({
               id: profileInfo.user_id,
               name: p.name,
+              gender: p.gender,
               age: p.age + ' years old',
               location: p.location,
               occupation: p.occupation,
