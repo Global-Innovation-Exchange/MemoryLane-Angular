@@ -54,9 +54,18 @@ export class ProfileAddService {
    * Function to GET what you want
    *
    * @param url
+   * @param payload
    */
-  public createProfile(url: string): Observable<any> {
-    // Call the http GET
+  public createProfile(url, payload): Observable<any> {
+    // Call the http POST
+    return this.http.post(url, payload).pipe(
+      map(this.extractData),
+      catchError(this.handleError),
+    );
+  }
+
+  public updateProfile(url: string): Observable<any> {
+    // Call the http POST
     return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError),

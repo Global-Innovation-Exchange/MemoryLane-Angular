@@ -11,7 +11,7 @@ Memory Lane project is a Global Innovation Exchange Launch Project. This iOS app
 1. Clone the repo
 2. After clone is completed, install npm modules ```cd memorylane-angular && npm i```
 3. To run a local copy in development mode, execute ```npm start```
-4. To create a bundle in production mode, execute ```npm run build:prd```
+4. To create a bundle in production mode, execute ```npm run build:prod```
 
 ## Meta
 

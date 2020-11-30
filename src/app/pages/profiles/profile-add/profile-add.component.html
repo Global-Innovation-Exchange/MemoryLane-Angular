@@ -42,7 +42,7 @@
           <div class="row">
                 <label for="inputHome" class="label col-sm-2 col-form-label">Grew up in</label>
                 <div class="col-sm-5">
-                  <nb-select fullWidth placeholder="Select Country">
+                  <nb-select fullWidth placeholder="Select Country" formControlName="locationCountry">
                     <nb-option value="US">United States</nb-option>
                     <nb-option value="CA">Canada</nb-option>
                     <nb-option value="UK">United Kingdom</nb-option>
@@ -50,10 +50,10 @@
                   </nb-select>
                 </div>
                 <div class="col-sm-5">
-                  <nb-select fullWidth placeholder="Select State/Province">
-                    <nb-option value="WA">Washington</nb-option>
-                    <nb-option value="NY">New York</nb-option>
-                    <nb-option value="OR">New York</nb-option>
+                  <nb-select fullWidth placeholder="Select State/Province" formControlName="locationState">
+                    <nb-option value="Washington">Washington</nb-option>
+                    <nb-option value="New York">New York</nb-option>
+                    <nb-option value="Oregon">Oregon</nb-option>
                     <nb-option value="N/A">Prefer not to say</nb-option>>
                   </nb-select>
                 </div>
@@ -61,19 +61,19 @@
           <div class="row">
             <label for="inputOccupation" class="label col-sm-2 col-form-label">Worked as</label>
             <div class="col-sm-5">
-              <nb-select fullWidth placeholder="Select Occupation">
-                <nb-option value="teacher">Teacher</nb-option>
-                <nb-option value="nurse">Nurse</nb-option>
-                <nb-option value="engineer">Engineer</nb-option>
-                <nb-option value="designer">Designer</nb-option>
-                <nb-option value="musican">Musican</nb-option>
-                <nb-option value="other">Other</nb-option>
-                <nb-option value="">Prefer not to say</nb-option>>
+              <nb-select fullWidth placeholder="Select Occupation" formControlName="occupation">
+                <nb-option value="Teacher">Teacher</nb-option>
+                <nb-option value="Nurse">Nurse</nb-option>
+                <nb-option value="Engineer">Engineer</nb-option>
+                <nb-option value="Designer">Designer</nb-option>
+                <nb-option value="Musican">Musican</nb-option>
+                <nb-option value="Other">Other</nb-option>
+                <nb-option value="N/A">Prefer not to say</nb-option>>
               </nb-select>
             </div>
           </div>
           <div class="nav-buttons">
-            <button nbButton nbStepperNext (click)="createProfile()">next</button>
+            <button nbButton nbStepperNext type="button" (click)="onFirstSubmit()" status="success">Next</button>
           </div>
         </form>
       </nb-step>
@@ -91,7 +91,7 @@
                 <nb-icon icon="music-outline" status="info"></nb-icon>
                 Music Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods">
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods_like">
                 <nb-checkbox
                   status="basic"
                   (checkedChange)="onCheckChange($event, mood, 'music')"
@@ -105,7 +105,7 @@
                 <nb-icon icon="video-outline" status="info"></nb-icon>
                 Video Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types">
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types_like">
                 <nb-checkbox
                   status="basic"
                   (checkedChange)="onCheckChange($event, type, 'video')"
@@ -116,8 +116,8 @@
             </div>
           </div>
           <div class="nav-buttons">
-            <button nbButton nbStepperPrevious>prev</button>
-            <button nbButton nbStepperNext>next</button>
+            <button nbButton nbStepperPrevious>Prev</button>
+            <button nbButton nbStepperNext status="success">Next</button>
           </div>
         </form>
       </nb-step>
@@ -130,11 +130,11 @@
                 <nb-icon icon="music-outline" status="info"></nb-icon>
                 Music Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods">
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods_dislike">
                 <nb-checkbox
                   status="basic"
-                  (checkedChange)="onCheckChange($event, mood, 'music')"
-                  [disabled]="musicLikeCount == checkBoxMaxCount && !mood.checked">
+                  (checkedChange)="onCheckChange($event, mood, 'music_dislike')"
+                  [disabled]="musicDislikeCount == checkBoxMaxCount && !mood.checked">
                   {{ mood.name }}
                 </nb-checkbox>
               </div>
@@ -144,19 +144,19 @@
                 <nb-icon icon="video-outline" status="info"></nb-icon>
                 Video Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types">
+              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types_dislike">
                 <nb-checkbox
                   status="basic"
-                  (checkedChange)="onCheckChange($event, type, 'video')"
-                  [disabled]="videoLikeCount == checkBoxMaxCount && !type.checked">
+                  (checkedChange)="onCheckChange($event, type, 'video_dislike')"
+                  [disabled]="videoDislikeCount == checkBoxMaxCount && !type.checked">
                   {{ type.name }}
                 </nb-checkbox>
               </div>
             </div>
           </div>
           <div class="nav-buttons">
-            <button nbButton nbStepperPrevious>prev</button>
-            <button nbButton nbStepperNext>Confirm</button>
+            <button nbButton nbStepperPrevious>Prev</button>
+            <button nbButton nbStepperNext status="success">Confirm</button>
           </div>
         </form>
       </nb-step>
