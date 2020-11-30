@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NbWindowRef } from '@nebular/theme';
+import { LikedMusicFormService } from './liked-music-form-service'
 
 @Component({
   selector: 'ngx-liked-music-form',
@@ -14,7 +15,7 @@ import { NbWindowRef } from '@nebular/theme';
             <button nbButton outline status="success">
               <nb-icon icon="heart" status="danger"></nb-icon>
             </button>
-            <button nbButton outline status="success">
+            <button nbButton outline status="basic">
               <nb-icon icon="close-outline" status="basic"></nb-icon>
             </button>
           </div>
@@ -33,14 +34,35 @@ import { NbWindowRef } from '@nebular/theme';
   styleUrls: ['liked-music-form.component.scss'],
 })
 
-export class LikedMusicFormComponent {
-  constructor(public windowRef: NbWindowRef) {}
+export class LikedMusicFormComponent implements OnInit {
+  constructor(
+    private api: LikedMusicFormService,
+    public windowRef: NbWindowRef,
+  ) {}
 
-  liked_music = [
-    '0Qwsdsdsxax',
-    'Piano Man',
-    'llllllllllllllloooooooooooooooooonnnnnnnnnnnnnnnggggg',
-  ];
+  profile_id: String;
+  url = 'https://us-central1-memory-lane-954c7.cloudfunctions.net/likedMusic?id=';
+  liked_music = [];
+
+  ngOnInit() {
+    this.api
+      .getLikedMusic(this.url+this.profile_id)
+      .subscribe(
+        data => {
+          // tslint:disable-next-line: no-console
+          console.log(data);
+          for (const track of data.tracks) {
+            console.log(track);
+            this.liked_music.push(track.track_name + ' - ' + track.artist);
+          }
+        },
+        err => {
+          // tslint:disable-next-line: no-console
+          console.log(err);
+        },
+      );
+  }
+
 
   close() {
     this.windowRef.close();

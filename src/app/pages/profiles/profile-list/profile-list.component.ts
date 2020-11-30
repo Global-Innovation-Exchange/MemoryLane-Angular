@@ -21,6 +21,7 @@ export class ProfileListComponent implements OnInit {
   ) {}
 
   users: {
+    id: string,
     name: string,
     age: string,
     location: string,
@@ -40,10 +41,11 @@ export class ProfileListComponent implements OnInit {
       .subscribe(
         data => {
           // tslint:disable-next-line: no-console
-          console.log(data);
+          // console.log(data);
           for (const profileInfo of data.profiles) {
             const p = profileInfo.profile;
             this.users.push({
+              id: profileInfo.user_id,
               name: p.name,
               age: p.age + ' years old',
               location: p.location,
@@ -60,8 +62,14 @@ export class ProfileListComponent implements OnInit {
       );
   }
 
-  openWindowForm() {
-    this.windowService.open(LikedMusicFormComponent, { title: `Liked Music` });
+  openWindowForm(profile_id) {
+    this.windowService.open(
+      LikedMusicFormComponent,
+      {
+        title: `Liked Music`,
+        context: { profile_id: profile_id },
+      },
+      );
   }
 
 

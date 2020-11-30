@@ -35,9 +35,9 @@
             <button nbButton outline status="danger">Drama</button>
           </td>
           <td>
-            <button nbButton hero fullWidth status="success" (click)="openWindowForm()">SHOW / ANNOTATE sessions</button>
+            <button nbButton hero fullWidth status="success" (click)="openWindowForm(user.id)">SHOW / ANNOTATE sessions</button>
             <div class="spacer"></div>
-            <button nbButton hero fullWidth status="success" (click)="openWindowForm()">VIEW / EDIT PROFILE</button>
+            <button nbButton hero fullWidth status="success" (click)="openWindowForm(user.id)">VIEW / EDIT PROFILE</button>
           </td>
         </tr>
       </tbody>
