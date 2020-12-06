@@ -59,7 +59,7 @@ export class ProfileListComponent implements OnInit {
               music_preference_like: p.prefered_genre,
               music_preference_dislike: p.disliked_genre,
               video_preference_like: p.prefered_video,
-              video_preference_dislike: p.disliked_genre,
+              video_preference_dislike: p.disliked_video,
             });
           }
         },

@@ -91,7 +91,7 @@
                 <nb-icon icon="music-outline" status="info"></nb-icon>
                 Music Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods_like">
+              <div class="input-group col-md-7 offset-md-3" *ngFor="let mood of music_moods_like">
                 <nb-checkbox
                   status="basic"
                   (checkedChange)="onCheckChange($event, mood, 'music')"
@@ -105,7 +105,7 @@
                 <nb-icon icon="video-outline" status="info"></nb-icon>
                 Video Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types_like">
+              <div class="input-group col-md-7 offset-md-3" *ngFor="let type of video_types_like">
                 <nb-checkbox
                   status="basic"
                   (checkedChange)="onCheckChange($event, type, 'video')"
@@ -130,7 +130,7 @@
                 <nb-icon icon="music-outline" status="info"></nb-icon>
                 Music Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let mood of music_moods_dislike">
+              <div class="input-group col-md-7 offset-md-3" *ngFor="let mood of music_moods_dislike">
                 <nb-checkbox
                   status="basic"
                   (checkedChange)="onCheckChange($event, mood, 'music_dislike')"
@@ -144,7 +144,7 @@
                 <nb-icon icon="video-outline" status="info"></nb-icon>
                 Video Preference (up to {{ checkBoxMaxCount }})
               </label>
-              <div class="input-group col-md-6 offset-md-3" *ngFor="let type of video_types_dislike">
+              <div class="input-group col-md-7 offset-md-3" *ngFor="let type of video_types_dislike">
                 <nb-checkbox
                   status="basic"
                   (checkedChange)="onCheckChange($event, type, 'video_dislike')"
